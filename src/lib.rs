@@ -1,24 +1,33 @@
 use iced::{advanced::{layout, mouse, renderer, widget::Tree, Layout, Widget}, Element, Length, Rectangle, Renderer, Size, Theme};
 
-/// Works to convert Option<T> to Element<'a, Message, Theme, Renderer>
-/// iced versions after 0.13.1 have a From impl so they don't need this
+/// Works to convert `Option<T>` to `Element<'a, Message, Theme, Renderer>`
+///
+/// iced versions after 0.13.1 have a `From` impl so they don't need this.
+///
 /// Usage:
+///
+///     use iced_optional_element_shim::to_elem;
+///
+///     fn view(&self) -> Element<'a, Message> {
 ///         column!(
 ///            text("Example header"),
 ///
 ///            if true {
-///                to_elem(Some(text("if true succeeded")))
+///                to_elem(Some(text("this element will display")))
 ///            } else {
 ///                to_elem::<Message, iced::widget::Text>(None)
 ///            },
+///
 ///            if false {
-///                to_elem(Some(text("if false failed")))
+///                to_elem(Some(text("this element will not display")))
 ///            } else {
 ///                to_elem::<Message, iced::widget::Text>(None)
 ///            },
 ///
 ///            text("footer"),
 ///        )
+///     }
+///
 pub fn to_elem<'a, Message, T: Into<Element<'a, Message, Theme, Renderer>>>(element: Option<T>) -> Element<'a, Message, Theme, Renderer> {
     struct Void;
 
