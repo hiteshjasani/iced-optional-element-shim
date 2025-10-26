@@ -1,6 +1,6 @@
 [package]
 name = "iced-optional-element-shim"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 license = "MIT"
 description = "utility shim for iced <= 0.13.1 to enable using conditional elements in rows and columns"
